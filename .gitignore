@@ -1,36 +1,123 @@
-# Virtual environment
-venv/
-.venv/
-env/
-
-# Python
-__pycache__/
-*.py[cod]
-*$py.class
-*.so
-.Python
-*.egg-info/
+# Build outputs
+target/
 dist/
 build/
+out/
+output/
+outputs/
+generated/
+*.app/
+*.dmg
+*.pkg
+*.apk
+*.aar
+*.ipa
+*.exe
+*.msi
+*.deb
+*.rpm
 
-# Model files (too large for git)
-models/*.gguf
-*.gguf
+# Dependencies / venvs
+node_modules/
+.venv/
+venv/
+env/
+__pycache__/
+*.pyc
+*.pyo
+.eggs/
+*.egg-info/
 
-# IDE
-.idea/
-.vscode/
+# Compiled binaries
+*.dylib
+*.so
+*.a
+*.lib
+*.o
+*.obj
+*.class
+*.jar
+*.pyd
+*.pyz
+
+# Caches
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.parcel-cache/
+.turbo/
+.next/
+.nuxt/
+.cache/
+.tox/
+.nox/
+.hypothesis/
+.ipynb_checkpoints/
+
+# Backup dirs
+SAFETY_BACKUPS/
+backups/
+*.backup/
+*.bak/
+backup/
+old/
+
+# Data dirs (likely bulk content, not source)
+data/
+datasets/
+models/
+weights/
+checkpoints/
+vectors/
+embeddings/
+library/
+tmp/
+_temp/
+_tmp/
+temp/
+
+# OS / editor
+.DS_Store
+Thumbs.db
 *.swp
 *.swo
+.idea/
+.vscode/
+*.iml
 
-# macOS
-.DS_Store
-.AppleDouble
-.LSOverride
+# Generated debug media
+screenshots/
+ns_*.png
+sol_bug.png
+sol_screenshot*.png
+sol_old.png
+sol_new.png
+sol_*.png
+ns_*.png
 
-# Logs
+# Generated audio / video renders
+audio-renders/
+rendered/
+generated-mp3/
+*.rendered.wav
+*.rendered.mp3
+
+# Caches / logs / runtime
+logs/
+log/
 *.log
+.tmp/
 
-# Environment
+# SECRETS
 .env
-.env.local
+.env.*
+*.pem
+*.key
+id_rsa*
+id_ed25519*
+credentials/
+secrets/
+*.p12
+*.pfx
+keystore.jks
+GH_TOKEN*
