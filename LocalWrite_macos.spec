@@ -8,7 +8,16 @@ block_cipher = None
 ROOT = Path(SPECPATH)
 
 # Collect all PyQt6 and Qt6 data
-from PyInstaller.utils.hooks import collect_data_files, collect_submodules
+from PyInstaller.utils.hooks import collect_data_files, collect_submodules, collect_all
+
+# llama-cpp-python ships native dylibs (libllama, libggml, libmtmd, libggml-metal etc.)
+# that PyInstaller's auto-hook misses when 'binaries = []' overrides Analysis.
+# Use collect_all to gather every dylib; pull data files separately because
+# collect_all's third slot is a list of submodule names (strings) not file tuples.
+_llama_cpp_all = collect_all('llama_cpp')
+_llama_binaries = list(_llama_cpp_all[1] or [])
+_llama_data_files = list(collect_data_files('llama_cpp') or [])
+
 hiddenimports = [
     'PyQt6', 'PyQt6.QtCore', 'PyQt6.QtGui', 'PyQt6.QtWidgets', 'PyQt6.QtSvg',
     'src', 'src.paraphraser', 'src.humanizer', 'src.humanizer_v2',
@@ -23,8 +32,8 @@ datas = [
     (str(ROOT / 'resources'), 'resources'),
     (str(ROOT / 'src'), 'src'),
     (str(ROOT / 'ui'), 'ui'),
-]
-binaries = []
+] + _llama_data_files
+binaries = list(_llama_binaries)
 
 a = Analysis(
     [str(ROOT / 'main.py')],
